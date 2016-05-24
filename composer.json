@@ -1,0 +1,19 @@
+{
+    "name" : "Ainars/HtmlTable",
+    "description" : "",
+    "type" : "library",
+    "authors" : [{
+        "name" : "Ainars",
+        "email" : "ainarsd@gmail.com"
+    }],
+    "keywords" : [
+        "html", "table"
+    ],
+    "require" : {
+    },
+    "autoload" : {
+        "psr-4" : {
+            "Ainars\\HtmlTable\\" : ""
+        }
+    }
+}
