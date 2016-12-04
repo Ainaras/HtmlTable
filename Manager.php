@@ -103,4 +103,40 @@ class Manager
         echo PHP_EOL;
     }
 
+	/**
+	 * @param \Ainars\HtmlTable\Table $table
+	 * @return array
+	 */
+	public function toAssocArray(Table $table) {
+
+		$normalizedTable = $this->normalize($table);
+
+		$assocArray = [];
+
+		$firstRow = $normalizedTable->getRow();
+
+		if ($firstRow) {
+			$i = 1;
+			while ($row = $normalizedTable->getRow($i++)) {
+				$assocArray[] = $this->_rowToAssocArray($row, $firstRow);
+			}
+		}
+
+		return $assocArray;
+	}
+
+	/**
+	 * @param \Ainars\HtmlTable\Row $row
+	 * @param \Ainars\HtmlTable\Row $headingRow
+	 * @return array
+	 */
+	protected function _rowToAssocArray(Row $row, Row $headingRow) {
+		$assocItem = [];
+		foreach ($row->getCols() as $key => $cell) {
+			$assocKey = $headingRow->getCell($key)->getContentAsPlainText();
+			$assocItem[$assocKey] = $cell->getContent();
+		}
+		return $assocItem;
+	}
+
 }
