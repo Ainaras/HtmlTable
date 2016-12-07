@@ -72,4 +72,8 @@ class Table
         return $this->_rows;
     }
 
+	function getCaption() {
+		return $this->_caption;
+	}
+
 }
