@@ -56,7 +56,7 @@ class Manager
     /**
      * @param int $rows
      * @param int $cols
-     * @return \Ainars\HtmlTable\Table
+     * @return Table
      */
     public function buildEmptyTable($rows = 1, $cols = 1)
     {
@@ -73,7 +73,7 @@ class Manager
 
     /**
      * @todo make print colspan and rowspan
-     * @param \Ainars\HtmlTable\Table $table
+     * @param Table $table
      * @param int $cellLength
      */
     public function print2Console(Table $table, $cellLength = 15)
@@ -109,11 +109,11 @@ class Manager
     }
 
 	/**
-	 * @param \Ainars\HtmlTable\Table $table
+	 * @param Table $table
 	 * @return array
 	 */
-	public function toAssocArray(Table $table) {
-
+	public function toAssocArray(Table $table)
+	{
 		$normalizedTable = $this->normalize($table);
 
 		$assocArray = [];
@@ -131,11 +131,12 @@ class Manager
 	}
 
 	/**
-	 * @param \Ainars\HtmlTable\Row $row
-	 * @param \Ainars\HtmlTable\Row $headingRow
+	 * @param Row $row
+	 * @param Row $headingRow
 	 * @return array
 	 */
-	protected function _rowToAssocArray(Row $row, Row $headingRow) {
+	protected function _rowToAssocArray(Row $row, Row $headingRow)
+	{
 		$assocItem = [];
 		foreach ($row->getCells() as $key => $cell) {
 			$assocKey = $headingRow->getCell($key)->getContentAsPlainText();

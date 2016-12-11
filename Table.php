@@ -22,7 +22,7 @@ class Table
 
     /**
      * @param string $caption
-     * @return \Ainars\HtmlTable\Table
+     * @return Table
      */
     public function setCaption($caption)
     {
@@ -30,22 +30,35 @@ class Table
         return $this;
     }
 
+	/**
+	 * @param string $class
+	 * @return Table
+	 */
     public function setClass($class)
     {
         $this->_class = $class;
         return $this;
     }
 
+	/**
+	 * @param Row $row
+	 */
     public function addRow(Row $row)
     {
         $this->_rows[] = $row;
     }
 
+	/**
+	 * @return int
+	 */
     public function countRows()
     {
         return count($this->_rows);
     }
 
+	/**
+	 * @return int
+	 */
     public function countCols()
     {
         $cols = 0;
@@ -67,12 +80,19 @@ class Table
         }
     }
 
+	/**
+	 * @return Row[]
+	 */
     public function getRows()
     {
         return $this->_rows;
     }
 
-	public function getCaption() {
+	/**
+	 * @return string
+	 */
+	public function getCaption()
+	{
 		return $this->_caption;
 	}
 
@@ -80,8 +100,8 @@ class Table
 	 * @param string $searchPhrase
 	 * @return array of cells with given search phrase
 	 */
-	public function searchExact($searchPhrase) {
-
+	public function searchExact($searchPhrase)
+	{
 		$found = [];
 		foreach ($this->getRows() as $r) {
 			$found = array_merge($found, $r->searchExact($searchPhrase));
