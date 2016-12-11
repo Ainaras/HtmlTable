@@ -2,7 +2,8 @@
 
 For personal usage.
 
-Usage:
+Usage example:
+
 	$manager = new Manager;
 	$normal = $manager->normalize($table);
 	$normal->getRow(0)->makeHeading();
