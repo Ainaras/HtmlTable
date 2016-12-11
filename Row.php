@@ -16,7 +16,7 @@ class Row
         return $this;
     }
 
-    public function countCols()
+    public function countCells()
     {
         return count($this->_cells);
     }
@@ -24,8 +24,8 @@ class Row
     public function isHeadingRow()
     {
         $hasHeading = true;
-        foreach ($this->_cells as $col) {
-            if (!$col->isHeading()) {
+        foreach ($this->_cells as $cell) {
+            if (!$cell->isHeading()) {
                 $hasHeading = false;
                 break;
             }
@@ -34,7 +34,7 @@ class Row
         return $hasHeading;
     }
 
-    public function getCols()
+    public function getCells()
     {
         return $this->_cells;
     }
@@ -52,8 +52,8 @@ class Row
 
     public function makeHeading()
     {
-        foreach ($this->_cells as $col) {
-            $col->setIsHeading(true);
+        foreach ($this->_cells as $cell) {
+            $cell->setIsHeading(true);
         }
         return $this;
     }
@@ -66,9 +66,9 @@ class Row
 	public function searchExact($searchPhrase) {
 
 		$found = [];
-		foreach ($this->getCols() as $col) {
-			if ($searchPhrase === $col->getContent()) {
-				$found[] = $col;
+		foreach ($this->getCells() as $cell) {
+			if ($searchPhrase === $cell->getContent()) {
+				$found[] = $cell;
 			}
 		}
 		return $found;

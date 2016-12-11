@@ -17,7 +17,7 @@ class Manager
         $normalizedTable = $this->buildEmptyTable($table->countRows(), $maxCountCells);
 
         foreach ($table->getRows() as $rowNo => $row) {
-            foreach ($row->getCols() as $colNo => $cell) {
+            foreach ($row->getCells() as $colNo => $cell) {
 
                 for ($i = $colNo; $i < $maxCountCells; $i++) {
 
@@ -88,10 +88,10 @@ class Manager
 
         foreach ($table->getRows() as $row) {
             if ($row->isHeadingRow()) {
-                echo str_repeat('-', $cellLength * $row->countCols()) . PHP_EOL;
+                echo str_repeat('-', $cellLength * $row->countCells()) . PHP_EOL;
             }
 
-            foreach ($row->getCols() as $no => $col) {
+            foreach ($row->getCells() as $no => $col) {
                 if ($no) {
                     echo "\t";
                 }
@@ -100,7 +100,7 @@ class Manager
 
             echo PHP_EOL;
             if ($row->isHeadingRow()) {
-                echo str_repeat('-', $cellLength * $row->countCols()) . PHP_EOL;
+                echo str_repeat('-', $cellLength * $row->countCells()) . PHP_EOL;
             }
         }
 
@@ -137,7 +137,7 @@ class Manager
 	 */
 	protected function _rowToAssocArray(Row $row, Row $headingRow) {
 		$assocItem = [];
-		foreach ($row->getCols() as $key => $cell) {
+		foreach ($row->getCells() as $key => $cell) {
 			$assocKey = $headingRow->getCell($key)->getContentAsPlainText();
 			$assocItem[$assocKey] = $cell->getContent();
 		}

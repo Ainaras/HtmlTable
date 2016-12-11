@@ -51,7 +51,7 @@ class Table
         $cols = 0;
 
         foreach ($this->_rows as $row) {
-            $cols = max($cols, $row->countCols());
+            $cols = max($cols, $row->countCells());
         }
         return $cols;
     }
