@@ -72,8 +72,21 @@ class Table
         return $this->_rows;
     }
 
-	function getCaption() {
+	public function getCaption() {
 		return $this->_caption;
+	}
+
+	/**
+	 * @param string $searchPhrase
+	 * @return array of cells with given search phrase
+	 */
+	public function searchExact($searchPhrase) {
+
+		$found = [];
+		foreach ($this->getRows() as $r) {
+			$found = array_merge($found, $r->searchExact($searchPhrase));
+		}
+		return $found;
 	}
 
 }

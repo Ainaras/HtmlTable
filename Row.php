@@ -8,23 +8,23 @@ class Row
     /**
      * @var Cell[]
      */
-    protected $_cols = [];
+    protected $_cells = [];
 
     public function addCell(Cell $cell)
     {
-        $this->_cols[] = $cell;
+        $this->_cells[] = $cell;
         return $this;
     }
 
     public function countCols()
     {
-        return count($this->_cols);
+        return count($this->_cells);
     }
 
     public function isHeadingRow()
     {
         $hasHeading = true;
-        foreach ($this->_cols as $col) {
+        foreach ($this->_cells as $col) {
             if (!$col->isHeading()) {
                 $hasHeading = false;
                 break;
@@ -36,7 +36,7 @@ class Row
 
     public function getCols()
     {
-        return $this->_cols;
+        return $this->_cells;
     }
 
     /**
@@ -45,17 +45,33 @@ class Row
      */
     public function getCell($nr = 0)
     {
-        if (isset($this->_cols[$nr])) {
-            return $this->_cols[$nr];
+        if (isset($this->_cells[$nr])) {
+            return $this->_cells[$nr];
         }
     }
 
     public function makeHeading()
     {
-        foreach ($this->_cols as $col) {
+        foreach ($this->_cells as $col) {
             $col->setIsHeading(true);
         }
         return $this;
     }
+
+
+	/**
+	 * @param string $searchPhrase
+	 * @return array of cells with given search phrase
+	 */
+	public function searchExact($searchPhrase) {
+
+		$found = [];
+		foreach ($this->getCols() as $col) {
+			if ($searchPhrase === $col->getContent()) {
+				$found[] = $col;
+			}
+		}
+		return $found;
+	}
 
 }
