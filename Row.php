@@ -67,7 +67,7 @@ class Row
 
 		$found = [];
 		foreach ($this->getCells() as $cell) {
-			if ($searchPhrase === $cell->getContent()) {
+			if ($searchPhrase === $cell->getContentAsPlainText()) {
 				$found[] = $cell;
 			}
 		}
