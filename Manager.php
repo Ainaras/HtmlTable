@@ -74,12 +74,17 @@ class Manager
     /**
      * @todo make print colspan and rowspan
      * @param \Ainars\HtmlTable\Table $table
+     * @param int $cellLength
      */
-    public function print2Console(Table $table)
+    public function print2Console(Table $table, $cellLength = 15)
     {
-        $cellLength = 15;
+        $cellLength = (int)$cellLength;
+        $caption = $table->getCaption();
+		if ($caption) {
+			echo '<<' . $caption . '>>' . PHP_EOL;
+		}
 
-        echo "Table: " . $table->countCols() . 'x' . $table->countRows() . PHP_EOL;
+        echo 'Table: ' . $table->countCols() . 'x' . $table->countRows() . PHP_EOL;
 
         foreach ($table->getRows() as $row) {
             if ($row->isHeadingRow()) {
