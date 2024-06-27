@@ -1,5 +1,5 @@
 {
-    "name" : "Ainars/HtmlTable",
+    "name" : "ainars/html-table",
     "description" : "",
     "type" : "library",
     "authors" : [{
@@ -10,6 +10,7 @@
         "html", "table"
     ],
     "require" : {
+        "php": "^7.4"
     },
     "autoload" : {
         "psr-4" : {
