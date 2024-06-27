@@ -8,30 +8,20 @@ class Row
     /**
      * @var Cell[]
      */
-    protected $_cells = [];
+    protected array $_cells = [];
 
-	/**
-	 * @param Cell $cell
-	 * @return Row
-	 */
-    public function addCell(Cell $cell)
+    public function addCell(Cell $cell): Row
     {
         $this->_cells[] = $cell;
         return $this;
     }
 
-	/**
-	 * @return int
-	 */
-    public function countCells()
+    public function countCells(): int
     {
         return count($this->_cells);
     }
 
-	/**
-	 * @return boolean
-	 */
-    public function isHeadingRow()
+    public function isHeadingRow(): bool
     {
         $hasHeading = true;
         foreach ($this->_cells as $cell) {
@@ -44,29 +34,23 @@ class Row
         return $hasHeading;
     }
 
-	/**
-	 * @return Cell[]
-	 */
-    public function getCells()
+    /**
+     * @return Cell[]
+     */
+    public function getCells(): array
     {
         return $this->_cells;
     }
 
-    /**
-     * @param int $nr
-     * @return Cell
-     */
-    public function getCell($nr = 0)
+    public function getCell(int $nr = 0): ?Cell
     {
         if (isset($this->_cells[$nr])) {
             return $this->_cells[$nr];
         }
+        return null;
     }
 
-	/**
-	 * @return Row
-	 */
-    public function makeHeading()
+    public function makeHeading(): Row
     {
         foreach ($this->_cells as $cell) {
             $cell->setIsHeading(true);
@@ -74,19 +58,19 @@ class Row
         return $this;
     }
 
-	/**
-	 * @param string $searchPhrase
-	 * @return array of cells with given search phrase
-	 */
-	public function searchExact($searchPhrase)
-	{
-		$found = [];
-		foreach ($this->getCells() as $cell) {
-			if ($searchPhrase === $cell->getContentAsPlainText()) {
-				$found[] = $cell;
-			}
-		}
-		return $found;
-	}
+    /**
+     * @param string $searchPhrase
+     * @return Cell[] array of cells with given search phrase
+     */
+    public function searchExact(string $searchPhrase): array
+    {
+        $found = [];
+        foreach ($this->getCells() as $cell) {
+            if ($searchPhrase === $cell->getContentAsPlainText()) {
+                $found[] = $cell;
+            }
+        }
+        return $found;
+    }
 
 }

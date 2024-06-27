@@ -5,61 +5,38 @@ namespace Ainars\HtmlTable;
 class Table
 {
 
-    /**
-     * @var string
-     */
-    protected $_caption;
+    protected string $_caption = '';
 
-    /**
-     * @var string
-     */
-    protected $_class;
+    protected string $_class = '';
 
     /**
      * @var Row[]
      */
-    protected $_rows = [];
+    protected array $_rows = [];
 
-    /**
-     * @param string $caption
-     * @return Table
-     */
-    public function setCaption($caption)
+    public function setCaption(string $caption): Table
     {
         $this->_caption = $caption;
         return $this;
     }
 
-	/**
-	 * @param string $class
-	 * @return Table
-	 */
-    public function setClass($class)
+    public function setClass(string $class): Table
     {
         $this->_class = $class;
         return $this;
     }
 
-	/**
-	 * @param Row $row
-	 */
-    public function addRow(Row $row)
+    public function addRow(Row $row): void
     {
         $this->_rows[] = $row;
     }
 
-	/**
-	 * @return int
-	 */
-    public function countRows()
+    public function countRows(): int
     {
         return count($this->_rows);
     }
 
-	/**
-	 * @return int
-	 */
-    public function countCols()
+    public function countCols(): int
     {
         $cols = 0;
 
@@ -69,44 +46,37 @@ class Table
         return $cols;
     }
 
-    /**
-     * @param int $nr
-     * @return Row
-     */
-    public function getRow($nr = 0)
+    public function getRow(int $nr = 0): Row
     {
         if (isset($this->_rows[$nr])) {
             return $this->_rows[$nr];
         }
     }
 
-	/**
-	 * @return Row[]
-	 */
-    public function getRows()
+    /**
+     * @return Row[]
+     */
+    public function getRows(): array
     {
         return $this->_rows;
     }
 
-	/**
-	 * @return string
-	 */
-	public function getCaption()
-	{
-		return $this->_caption;
-	}
+    public function getCaption(): string
+    {
+        return $this->_caption;
+    }
 
-	/**
-	 * @param string $searchPhrase
-	 * @return array of cells with given search phrase
-	 */
-	public function searchExact($searchPhrase)
-	{
-		$found = [];
-		foreach ($this->getRows() as $r) {
-			$found = array_merge($found, $r->searchExact($searchPhrase));
-		}
-		return $found;
-	}
+    /**
+     * @param string $searchPhrase
+     * @return Cell[] of cells with given search phrase
+     */
+    public function searchExact(string $searchPhrase): array
+    {
+        $found = [];
+        foreach ($this->getRows() as $r) {
+            $found = array_merge($found, $r->searchExact($searchPhrase));
+        }
+        return $found;
+    }
 
 }

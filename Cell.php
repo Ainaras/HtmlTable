@@ -7,125 +7,72 @@ class Cell
 
     const IS_EMPTY = null;
 
-	/**
-	 * @var int
-	 */
-    protected $_colspan = 1;
+    protected int $_colspan = 1;
 
-	/**
-	 * @var int
-	 */
-    protected $_rowspan = 1;
+    protected int $_rowspan = 1;
 
-	/**
-	 * @var bool
-	 */
-    protected $_isHeading = false;
+    protected bool $_isHeading = false;
 
-	/**
-	 * @var string
-	 */
-    protected $_content = self::IS_EMPTY;
+    protected ?string $_content = self::IS_EMPTY;
 
-	/**
-	 * @var string
-	 */
-    protected $_class = '';
+    protected string $_class = '';
 
-	/**
-	 * @param string $class
-	 * @return Cell
-	 */
-    public function setClass($class)
+    public function setClass(string $class): Cell
     {
         $this->_class = $class;
         return $this;
     }
 
-	/**
-	 * @return bool
-	 */
-    public function isEmpty()
+    public function isEmpty(): bool
     {
         return $this->_content === self::IS_EMPTY;
     }
 
-	/**
-	 * @param string $content
-	 * @return Cell
-	 */
-    public function setContent($content)
+    public function setContent(?string $content): Cell
     {
         $this->_content = $content;
         return $this;
     }
 
-	/**
-	 * @param int $colspan
-	 * @return Cell
-	 */
-    public function setColspan($colspan)
+    public function setColspan(int $colspan): Cell
     {
         $this->_colspan = (int)$colspan;
         return $this;
     }
 
-	/**
-	 * @param int $rowspan
-	 * @return Cell
-	 */
-    public function setRowspan($rowspan)
+    public function setRowspan(int $rowspan): Cell
     {
         $this->_rowspan = (int)$rowspan;
         return $this;
     }
 
-	/**
-	 * @param bool $isHeading
-	 * @return Cell
-	 */
-    public function setIsHeading($isHeading)
+    public function setIsHeading(bool $isHeading): Cell
     {
         $this->_isHeading = (bool)$isHeading;
         return $this;
     }
 
-	/**
-	 * @return string
-	 */
-    public function getContent()
+    public function getContent(): ?string
     {
         return $this->_content;
     }
 
-	/**
-	 * @return string
-	 */
-    public function getContentAsPlainText()
+    public function getContentAsPlainText(): string
     {
-        return html_entity_decode(trim(strip_tags($this->_content)));
+        return html_entity_decode(trim(strip_tags((string)$this->_content)));
     }
 
-	/**
-	 * @return bool
-	 */
-    public function isHeading()
+    public function isHeading(): string
     {
         return $this->_isHeading;
     }
 
-	/**
-	 * @return int
-	 */
-    public function getColspan()
+    public function getColspan(): int
     {
         return $this->_colspan;
     }
 
-	/**
-	 * @return int
-	 */
-    public function getRowspan()
+    public function getRowspan(): int
     {
         return $this->_rowspan;
     }
